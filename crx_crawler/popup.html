@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>实时数据</title>
+    <style>
+        #container {
+            width: 750px;
+        }
+        th {
+            background-attachment:scroll;
+            background-clip:border-box;
+            background-color:rgb(250, 250, 250);
+            background-image:none;
+            background-origin:padding-box;
+            background-position-x:0%;
+            background-position-y:0%;
+            background-repeat-x:;
+            background-repeat-y:;
+            background-size:auto;
+            border-bottom-color:rgb(232, 232, 232);
+            border-bottom-style:solid;
+            border-bottom-width:1px;
+            border-collapse:separate;
+            border-top-left-radius:4px;
+            box-sizing:border-box;
+            color:rgba(0, 0, 0, 0.85);
+            display:table-cell;
+            font-family:-apple-system, system-ui, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-feature-settings:"tnum";
+            font-size:14px;
+            font-variant-caps:normal;
+            font-variant-east-asian:normal;
+            font-variant-ligatures:normal;
+            font-variant-numeric:tabular-nums;
+            font-weight:500;
+            height:54px;
+            line-height:21px;
+            list-style-image:none;
+            list-style-position:outside;
+            list-style-type:none;
+            margin-bottom:0px;
+            margin-left:0px;
+            margin-right:0px;
+            margin-top:0px;
+            overflow-wrap:break-word;
+            padding-bottom:16px;
+            padding-left:16px;
+            padding-right:16px;
+            padding-top:16px;
+            text-align:left;
+            text-size-adjust:100%;
+            transition-delay:0s;
+            transition-duration:0.3s;
+            transition-property:background;
+            transition-timing-function:ease;
+            vertical-align:middle;
+            width:180px;
+            -webkit-border-horizontal-spacing:0px;
+            -webkit-border-vertical-spacing:0px;
+        }
+        tr {
+            border-bottom-color:rgb(128, 128, 128);
+            border-collapse:separate;
+            border-left-color:rgb(128, 128, 128);
+            border-right-color:rgb(128, 128, 128);
+            border-top-color:rgb(128, 128, 128);
+            box-sizing:border-box;
+            color:rgba(0, 0, 0, 0.65);
+            display:table-row;
+            font-family:-apple-system, system-ui, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-feature-settings:"tnum";
+            font-size:14px;
+            font-variant-caps:normal;
+            font-variant-east-asian:normal;
+            font-variant-ligatures:normal;
+            font-variant-numeric:tabular-nums;
+            height:56px;
+            line-height:21px;
+            list-style-image:none;
+            list-style-position:outside;
+            list-style-type:none;
+            text-align:left;
+            text-size-adjust:100%;
+            transition-delay:0s, 0s;
+            transition-duration:0.3s, 0s;
+            transition-property:all, height;
+            transition-timing-function:ease, ease;
+            vertical-align:middle;
+            width:1316px;
+            -webkit-border-horizontal-spacing:0px;
+            -webkit-border-vertical-spacing:0px;
+        }
+        td {
+            border-bottom-color:rgb(232, 232, 232);
+            border-bottom-style:solid;
+            border-bottom-width:1px;
+            border-collapse:separate;
+            box-sizing:border-box;
+            color:rgba(0, 0, 0, 0.65);
+            display:table-cell;
+            font-family:-apple-system, system-ui, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-feature-settings:"tnum";
+            font-size:14px;
+            font-variant-caps:normal;
+            font-variant-east-asian:normal;
+            font-variant-ligatures:normal;
+            font-variant-numeric:tabular-nums;
+            height:56px;
+            line-height:21px;
+            list-style-image:none;
+            list-style-position:outside;
+            list-style-type:none;
+            margin-bottom:0px;
+            margin-left:0px;
+            margin-right:0px;
+            margin-top:0px;
+            overflow-wrap:break-word;
+            padding-bottom:16px;
+            padding-left:16px;
+            padding-right:16px;
+            padding-top:16px;
+            text-align:left;
+            text-size-adjust:100%;
+            transition-delay:0s, 0s;
+            transition-duration:0.3s, 0s;
+            transition-property:all, border;
+            transition-timing-function:ease, ease;
+            vertical-align:middle;
+            width:180px;
+            -webkit-border-horizontal-spacing:0px;
+            -webkit-border-vertical-spacing:0px;
+            -webkit-tap-highlight-color:
+        }
+        button {
+            outline: none;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            font-weight: 400;
+            white-space: nowrap;
+            text-align: center;
+            background-image: none;
+            border: 1px solid transparent;
+            -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+            cursor: pointer;
+            -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            height: 32px;
+            padding: 0 15px;
+            font-size: 14px;
+            border-radius: 4px;
+            color: rgba(0, 0, 0, 0.65);
+            background-color: #fff;
+            border-color: #d9d9d9;
+        }
+
+        button:hover {
+            color: #fff;
+            background-color: #40a9ff;
+            border-color: #40a9ff;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <table></table>
+    <button id="getFundsData">获取最新数据</button>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
